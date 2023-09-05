@@ -1,8 +1,11 @@
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setFilter } from 'redux/filter';
-export default function FilterContacts({ title, filter }) {
+import { useSelector } from 'react-redux';
+
+export default function FilterContacts({ title }) {
   const dispatch = useDispatch();
+  const filter = useSelector(state => state.filter);
   return (
     <>
       <h3>{title}</h3>
@@ -19,5 +22,4 @@ export default function FilterContacts({ title, filter }) {
 
 FilterContacts.propTypes = {
   title: PropTypes.string.isRequired,
-  filter: PropTypes.string.isRequired,
 };

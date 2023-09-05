@@ -1,8 +1,11 @@
 import Contact from 'components/Contact/Contact';
 import { ContactListUl } from './contactList.styled';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-export default function ContactList({ contacts, filter }) {
+export default function ContactList() {
+  const contacts = useSelector(state => state.myContacts);
+  const filter = useSelector(state => state.filter);
+
   const filterContacts = contacts.filter(el =>
     el.name.toLowerCase().includes(filter.toLowerCase())
   );
@@ -17,13 +20,3 @@ export default function ContactList({ contacts, filter }) {
     </>
   );
 }
-
-ContactList.propTypes = {
-  contacts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
-  filter: PropTypes.string.isRequired,
-};
